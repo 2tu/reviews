@@ -7,16 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import com.squareup.picasso.Picasso;
 import com.tu.core.mvp.BaseView;
 import com.tu.core.mvp.Presenter;
 import com.tu.core.mvp.RxPresenter;
 import com.tu.core.mvp.RxPresenterDelegate;
+import javax.inject.Inject;
 
 /**
  * @author tu enum@foxmail.com.
  */
 
 public class BaseActivity extends AppCompatActivity {
+  @Inject Picasso picasso;
   public static final RxPresenter RX_PRESENTER = new RxPresenter() {
   };
   @SuppressWarnings("unchecked") private final RxPresenterDelegate rxPresenterDelegate =

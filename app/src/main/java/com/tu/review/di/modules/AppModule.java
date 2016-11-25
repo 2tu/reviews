@@ -6,6 +6,7 @@ import android.net.Uri;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
+import com.tu.review.data.api.adapter.ReviewJsonAdapterFactory;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -29,7 +30,7 @@ import timber.log.Timber;
   }
 
   @Provides @Singleton Moshi provideMoshi() {
-    return new Moshi.Builder().build();
+    return new Moshi.Builder().add(new ReviewJsonAdapterFactory()).build();
   }
 
   @Provides @Singleton Picasso providePicasso(Context appContext, OkHttp3Downloader downloader) {
