@@ -1,13 +1,15 @@
 package com.tu.review.presentation.myapp;
 
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 import com.tu.core.mvp.RxPresenter;
 import com.tu.core.rx.EndSubscriber;
 import com.tu.review.data.model.AppInfo;
 import com.tu.review.data.model.Store;
-import com.tu.review.di.scope.MyAppScope;
-import com.tu.review.domain.repository.MyAppRepository;
+import com.tu.review.data.source.MyAppRepository;
 import java.io.IOException;
 import javax.inject.Inject;
+import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,7 +22,7 @@ import timber.log.Timber;
  * @author tu enum@foxmail.com.
  */
 
-@MyAppScope public final class MyAppPresenter extends RxPresenter<MyAppView> {
+public final class MyAppPresenter extends RxPresenter<MyAppView> {
   private final MyAppRepository repository;
 
   @Inject public MyAppPresenter(MyAppRepository repository) {
@@ -32,6 +34,16 @@ import timber.log.Timber;
     subscriptions.add(
         observeOnView(repository.detail(packageName).map(new Func1<ResponseBody, AppInfo>() {
           @Override public AppInfo call(ResponseBody responseBody) {
+            if (MediaType.parse("application/json; charset=utf-8").equals(responseBody.contentType())) {
+              Moshi moshi = new Moshi.Builder().build();
+              JsonAdapter<AppInfo> jsonAdapter = moshi.adapter(AppInfo.class);
+              try {
+                return jsonAdapter.fromJson(responseBody.string());
+              } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+              }
+            }
             AppInfo.Builder builder;
             try {
               Document document = Jsoup.parse(responseBody.byteStream(), "utf-8", "");
@@ -124,20 +136,13 @@ import timber.log.Timber;
               baseView.showEmptyView();
             } else {
               baseView.showMyAppInfo(appInfo);
+              saveAppInfo(appInfo);
             }
-            // TODO: 16/11/25 save
-            //AVObject testObject = new AVObject("app_info");
-            //testObject.put("words", "Hello World!");
-            //testObject.saveInBackground(new SaveCallback() {
-            //  @Override public void done(AVException e) {
-            //    if (e == null) {
-            //      Log.d("saved", "success!");
-            //    } else {
-            //      Log.e("av", "save error", e);
-            //    }
-            //  }
-            //});
           }
         }));
+  }
+
+  public void saveAppInfo(AppInfo appInfo) {
+    appInfo.getAVObject().saveInBackground();
   }
 }

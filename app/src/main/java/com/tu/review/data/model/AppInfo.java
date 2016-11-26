@@ -8,7 +8,7 @@ import com.avos.avoscloud.AVObject;
  * @author tu enum@foxmail.com.
  */
 
-public class AppInfo implements Parcelable {
+public class AppInfo extends BaseAV implements Parcelable {
   public String appName;
   public String packageName;
   public float score;
@@ -148,15 +148,26 @@ public class AppInfo implements Parcelable {
         ", score=" + score +
         ", reviewCount=" + reviewCount +
         ", downCount=" + downCount +
-        ", apkSize='" + appSize + '\'' +
+        ", appSize='" + appSize + '\'' +
         ", category='" + category + '\'' +
         ", icon='" + icon + '\'' +
         ", store=" + store +
         '}';
   }
 
-  public AVObject getAVObject(){
+  public AVObject getAVObject() {
     AVObject appInfo = new AVObject("app_info");
+    appInfo.put("appName", appName);
+    appInfo.put("packageName", packageName);
+    appInfo.put("score", score);
+    appInfo.put("reviewCount", reviewCount);
+    appInfo.put("downCount", downCount);
+    appInfo.put("appSize", appSize);
+    appInfo.put("category", category);
+    appInfo.put("icon", icon);
+    if (null != store) {
+      appInfo.put("store", store.state);
+    }
     return appInfo;
   }
 }

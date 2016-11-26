@@ -1,8 +1,8 @@
-package com.tu.review.data.api.datasource;
+package com.tu.review.data.source.store;
 
 import com.tu.review.data.api.service.MyAppApi;
-import com.tu.review.domain.repository.MyAppRepository;
-import javax.inject.Inject;
+import com.tu.review.data.source.MyAppDataSource;
+import com.tu.review.di.scope.MyAppScope;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import rx.Observable;
@@ -11,10 +11,10 @@ import rx.Observable;
  * @author tu enum@foxmail.com.
  */
 
-public class MyAppDataSource implements MyAppRepository {
+@MyAppScope public class MyAppStoreDataSource implements MyAppDataSource {
   private final MyAppApi api;
 
-  @Inject public MyAppDataSource(Retrofit retrofit) {
+  public MyAppStoreDataSource(Retrofit retrofit) {
     api = retrofit.create(MyAppApi.class);
   }
 
