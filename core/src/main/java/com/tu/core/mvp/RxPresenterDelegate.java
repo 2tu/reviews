@@ -23,6 +23,10 @@ public final class RxPresenterDelegate<T extends BaseView> implements Presenter<
     presenter.attach(view);
   }
 
+  @Override public void attach(T view, Bundle bundle) {
+    presenter.attach(view, bundle);
+  }
+
   @Override public void detach() {
     presenter.detach();
   }

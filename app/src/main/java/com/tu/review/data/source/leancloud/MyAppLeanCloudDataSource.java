@@ -27,14 +27,13 @@ import rx.schedulers.Schedulers;
       @Override public Observable<ResponseBody> call(String s) {
         AVQuery<AVObject> query = new AVQuery<>("app_info");
         query.whereEqualTo("packageName", packageName);
-        query.whereEqualTo("store", Store.MY_APP.description);
+        query.whereEqualTo("store", Store.MY_APP.state);
         try {
           List<AVObject> list = query.find();
           if (list != null && !list.isEmpty()) {
             AVObject avObject = list.get(0);
-            // FIXME: 16/11/26 ResponseBody IOException: Content-Length and stream length disagree
-            return Observable.just(
-                ResponseBody.create(MediaType.parse("application/json"), avObject.toString()));
+            return Observable.just(ResponseBody.create(MediaType.parse("application/json"),
+                avObject.toJSONObject().toString()));
           } else {
             return Observable.just(ResponseBody.create(MediaType.parse("application/json"), ""));
           }

@@ -27,6 +27,8 @@ public interface Presenter<T extends BaseView> {
    */
   void attach(T view);
 
+  void attach(T view, Bundle bundle);
+
   void restoreInstanceState(Bundle savedInstanceState);
 
   void saveInstanceState(Bundle outState);

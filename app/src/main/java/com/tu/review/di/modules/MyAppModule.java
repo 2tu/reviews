@@ -1,8 +1,10 @@
 package com.tu.review.di.modules;
 
 import com.tu.review.data.source.LeanCloud;
+import com.tu.review.data.source.LeanCloudDataSource;
 import com.tu.review.data.source.MyAppDataSource;
 import com.tu.review.data.source.Store;
+import com.tu.review.data.source.leancloud.LeanCloudDataSourceImpl;
 import com.tu.review.data.source.leancloud.MyAppLeanCloudDataSource;
 import com.tu.review.data.source.store.MyAppStoreDataSource;
 import com.tu.review.di.scope.MyAppScope;
@@ -22,5 +24,9 @@ import retrofit2.Retrofit;
 
   @Provides @LeanCloud @MyAppScope MyAppDataSource provideMyAppLeanCloudDataSource() {
     return new MyAppLeanCloudDataSource();
+  }
+
+  @Provides @MyAppScope LeanCloudDataSource provideLeanCloudDataSource() {
+    return new LeanCloudDataSourceImpl();
   }
 }

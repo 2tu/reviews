@@ -1,8 +1,6 @@
 package com.tu.review.data.source;
 
-import android.text.TextUtils;
 import com.tu.review.di.scope.MyAppScope;
-import java.io.IOException;
 import javax.inject.Inject;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -26,15 +24,19 @@ import rx.functions.Func1;
     return leanCloudDataSource.detail(packageName)
         .flatMap(new Func1<ResponseBody, Observable<ResponseBody>>() {
           @Override public Observable<ResponseBody> call(ResponseBody responseBody) {
-            try {
-              if (TextUtils.isEmpty(responseBody.string())) {
-                return storeDataSource.detail(packageName);
-              }
-            } catch (IOException e) {
+            if (responseBody.contentLength() == 0) {
               return storeDataSource.detail(packageName);
             }
             return Observable.just(responseBody);
           }
         });
+  }
+
+  public Observable<ResponseBody> detailByMyApp(final String packageName) {
+    return storeDataSource.detail(packageName);
+  }
+
+  public Observable<ResponseBody> detailByLeanCloud(final String packageName) {
+    return leanCloudDataSource.detail(packageName);
   }
 }

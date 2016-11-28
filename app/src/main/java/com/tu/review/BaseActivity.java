@@ -48,7 +48,13 @@ public class BaseActivity extends AppCompatActivity {
       unbinder.unbind();
     }
   }
+
   @SuppressWarnings("unchecked")
+  protected void delegatePresenter(Presenter presenter, Bundle bundle, BaseView view) {
+    rxPresenterDelegate.delegate(presenter);
+    rxPresenterDelegate.attach(view, bundle);
+  }
+
   protected void delegatePresenter(Presenter presenter, BaseView view) {
     rxPresenterDelegate.delegate(presenter);
     rxPresenterDelegate.attach(view);

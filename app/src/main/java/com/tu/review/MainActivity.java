@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity implements MyAppView {
 
   @OnClick(R.id.save_button) void save() {
     //startActivity(new Intent(this, WebActivity.class));
-    presenter.loadDetail(editText.getText().toString());
+    presenter.load(editText.getText().toString());
     //AVObject testObject = new AVObject("Test" + editText.getText().toString());
     //testObject.put("words", "Hello World!");
     //testObject.saveInBackground(new SaveCallback() {
