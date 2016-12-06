@@ -1,6 +1,5 @@
 package com.tu.review.data.source;
 
-import com.avos.avoscloud.AVObject;
 import com.tu.review.data.model.AppInfo;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -9,8 +8,10 @@ import rx.Observable;
  * @author tu enum@foxmail.com.
  */
 
-public interface LeanCloudDataSource {
+public interface ReviewDataSource {
+  Observable<AppInfo> getAppInfo(String packageName, com.tu.review.data.model.Store store);
+
   Observable<ResponseBody> save(AppInfo appInfo);
 
-  Observable<AVObject> query(AppInfo appInfo);
+  Observable<AppInfo> getAppInfo(AppInfo appInfo);
 }

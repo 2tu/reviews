@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity implements MyAppView {
     scoreTextView.setText(
         String.valueOf(appInfo.score) + "分  （" + String.valueOf(appInfo.reviewCount) + "人评论）");
     countTextView.setText(
-        String.valueOf(appInfo.downCount) + "万下载  " + String.valueOf(appInfo.appSize));
+        String.valueOf(appInfo.downCount) + "下载  " + String.valueOf(appInfo.appSize));
   }
 
   @Override public void showLoading() {
