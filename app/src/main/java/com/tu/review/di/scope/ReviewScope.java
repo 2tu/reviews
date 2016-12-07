@@ -9,5 +9,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @author tu enum@foxmail.com.
  */
 
-@Scope @Retention(RUNTIME) public @interface  MyAppScope {
+@Scope @Retention(RUNTIME) public @interface ReviewScope {
 }

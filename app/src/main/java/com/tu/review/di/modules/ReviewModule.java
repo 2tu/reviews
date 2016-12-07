@@ -5,7 +5,7 @@ import com.tu.review.data.source.ReviewDataSource;
 import com.tu.review.data.source.Store;
 import com.tu.review.data.source.leancloud.ReviewLeanCloudDataSource;
 import com.tu.review.data.source.store.ReviewStoreDataSource;
-import com.tu.review.di.scope.MyAppScope;
+import com.tu.review.di.scope.ReviewScope;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
@@ -14,13 +14,13 @@ import retrofit2.Retrofit;
  * @author tu enum@foxmail.com.
  */
 
-@Module public final class MyAppModule {
+@Module public final class ReviewModule {
 
-  @Provides @Store @MyAppScope ReviewDataSource provideMyAppStoreDataSource(Retrofit retrofit) {
+  @Provides @Store @ReviewScope ReviewDataSource provideStoreDataSource(Retrofit retrofit) {
     return new ReviewStoreDataSource(retrofit);
   }
 
-  @Provides @LeanCloud @MyAppScope ReviewDataSource provideMyAppLeanCloudDataSource() {
+  @Provides @LeanCloud @ReviewScope ReviewDataSource provideMyAppLeanCloudDataSource() {
     return new ReviewLeanCloudDataSource();
   }
 }

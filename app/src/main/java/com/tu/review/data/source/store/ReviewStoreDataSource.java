@@ -3,7 +3,7 @@ package com.tu.review.data.source.store;
 import com.tu.review.data.api.service.MyAppApi;
 import com.tu.review.data.model.AppInfo;
 import com.tu.review.data.source.ReviewDataSource;
-import com.tu.review.di.scope.MyAppScope;
+import com.tu.review.di.scope.ReviewScope;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import rx.Observable;
@@ -14,7 +14,7 @@ import rx.schedulers.Schedulers;
  * @author tu enum@foxmail.com.
  */
 
-@MyAppScope public class ReviewStoreDataSource implements ReviewDataSource {
+@ReviewScope public class ReviewStoreDataSource implements ReviewDataSource {
   private final MyAppApi api;
 
   public ReviewStoreDataSource(Retrofit retrofit) {

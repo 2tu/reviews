@@ -6,7 +6,7 @@ import com.avos.avoscloud.AVQuery;
 import com.tu.review.data.model.AppInfo;
 import com.tu.review.data.model.Store;
 import com.tu.review.data.source.ReviewDataSource;
-import com.tu.review.di.scope.MyAppScope;
+import com.tu.review.di.scope.ReviewScope;
 import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
  * @author tu enum@foxmail.com.
  */
 
-@MyAppScope public class ReviewLeanCloudDataSource implements ReviewDataSource {
+@ReviewScope public class ReviewLeanCloudDataSource implements ReviewDataSource {
   public ReviewLeanCloudDataSource() {
 
   }

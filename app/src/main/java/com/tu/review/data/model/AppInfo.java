@@ -8,7 +8,7 @@ import com.avos.avoscloud.AVObject;
  * @author tu enum@foxmail.com.
  */
 
-public class AppInfo extends BaseAV implements Parcelable {
+public class AppInfo implements Parcelable {
   public String appName;
   public String packageName;
   public float score;
@@ -21,9 +21,6 @@ public class AppInfo extends BaseAV implements Parcelable {
   public String objectId;
 
   private AppInfo(Builder builder) {
-    objectId = builder.objectId;
-    createAt = builder.createAt;
-    updateAt = builder.updateAt;
     appName = builder.appName;
     packageName = builder.packageName;
     score = builder.score;

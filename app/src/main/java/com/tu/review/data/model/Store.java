@@ -8,7 +8,7 @@ public enum Store {
   MY_APP("MY_APP", "应用宝"),
   QIHU_360("360", "360"),
   WANDOUJIA("WANDOUJIA", "豌豆荚"),
-  MI("MI", "小米");
+  MI("Mi", "小米");
 
   public final String state;
   public final String description;

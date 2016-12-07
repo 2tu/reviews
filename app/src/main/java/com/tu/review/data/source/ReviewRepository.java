@@ -1,7 +1,7 @@
 package com.tu.review.data.source;
 
 import com.tu.review.data.model.AppInfo;
-import com.tu.review.di.scope.MyAppScope;
+import com.tu.review.di.scope.ReviewScope;
 import javax.inject.Inject;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -12,7 +12,7 @@ import rx.schedulers.Schedulers;
  * @author tu enum@foxmail.com.
  */
 
-@MyAppScope public class ReviewRepository implements ReviewDataSource {
+@ReviewScope public class ReviewRepository implements ReviewDataSource {
   private final ReviewDataSource leanCloudDataSource;
   private final ReviewDataSource storeDataSource;
 

@@ -39,7 +39,7 @@ import timber.log.Timber;
     return builder.build();
   }
 
-  @Provides @Singleton Retrofit provideRetrofit(OkHttpClient client, Moshi moshi) {
+  @Provides @Singleton Retrofit provideMyAppRetrofit(OkHttpClient client, Moshi moshi) {
     return new Retrofit.Builder().baseUrl(UrlConstants.DOMAIN_MY_APP)
         .client(client)
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

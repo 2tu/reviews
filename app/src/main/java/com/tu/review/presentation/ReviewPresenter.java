@@ -1,4 +1,4 @@
-package com.tu.review.presentation.myapp;
+package com.tu.review.presentation;
 
 import com.tu.core.mvp.RxPresenter;
 import com.tu.core.rx.EndSubscriber;
@@ -11,10 +11,10 @@ import javax.inject.Inject;
  * @author tu enum@foxmail.com.
  */
 
-public final class MyAppPresenter extends RxPresenter<MyAppView> {
+public final class ReviewPresenter extends RxPresenter<ReviewView> {
   private final ReviewRepository repository;
 
-  @Inject public MyAppPresenter(ReviewRepository repository) {
+  @Inject public ReviewPresenter(ReviewRepository repository) {
     this.repository = repository;
   }
 

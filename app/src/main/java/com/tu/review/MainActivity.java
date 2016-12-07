@@ -9,13 +9,13 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.tu.review.data.model.AppInfo;
 import com.tu.review.di.Injector;
-import com.tu.review.di.components.DaggerMyAppComponent;
-import com.tu.review.presentation.myapp.MyAppPresenter;
-import com.tu.review.presentation.myapp.MyAppView;
+import com.tu.review.di.components.DaggerReviewComponent;
+import com.tu.review.presentation.ReviewPresenter;
+import com.tu.review.presentation.ReviewView;
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity implements MyAppView {
-  @Inject MyAppPresenter presenter;
+public class MainActivity extends BaseActivity implements ReviewView {
+  @Inject ReviewPresenter presenter;
   @BindView(R.id.edittext) EditText editText;
   @BindView(R.id.score_ratingbar) RatingBar scoreRatingBar;
   @BindView(R.id.name_tv) TextView nameTextView;
@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity implements MyAppView {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    DaggerMyAppComponent.builder()
+    DaggerReviewComponent.builder()
         .appComponent(Injector.obtain(getApplicationContext()))
         .build()
         .inject(this);
@@ -34,19 +34,7 @@ public class MainActivity extends BaseActivity implements MyAppView {
   }
 
   @OnClick(R.id.save_button) void save() {
-    //startActivity(new Intent(this, WebActivity.class));
     presenter.load(editText.getText().toString());
-    //AVObject testObject = new AVObject("Test" + editText.getText().toString());
-    //testObject.put("words", "Hello World!");
-    //testObject.saveInBackground(new SaveCallback() {
-    //  @Override public void done(AVException e) {
-    //    if (e == null) {
-    //      Log.d("saved", "success!");
-    //    } else {
-    //      Log.e("av", "save error", e);
-    //    }
-    //  }
-    //});
   }
 
   @Override public void showEmptyView() {

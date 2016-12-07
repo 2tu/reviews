@@ -1,4 +1,4 @@
-package com.tu.review.presentation.myapp;
+package com.tu.review.presentation;
 
 import com.tu.core.mvp.BaseView;
 import com.tu.review.data.model.AppInfo;
@@ -7,7 +7,7 @@ import com.tu.review.data.model.AppInfo;
  * @author tu enum@foxmail.com.
  */
 
-public interface MyAppView extends BaseView {
+public interface ReviewView extends BaseView {
   /**
    * Show empty view when no data to show.
    */
