@@ -10,6 +10,5 @@ import rx.Observable;
  */
 
 public interface MyAppApi {
-  @GET("myapp/detail.htm") Observable<ResponseBody> detail(
-      @Query("apkName") String packageName);
+  @GET("myapp/detail.htm") Observable<ResponseBody> detail(@Query("apkName") String packageName);
 }
