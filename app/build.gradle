@@ -40,5 +40,6 @@ dependencies {
   annotationProcessor deps.butterknifeCompiler
   compile deps.jsoup
   compile deps.avoscloudSdk
+  compile deps.recyclerviewV7
   compile project(':core')
 }

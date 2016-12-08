@@ -51,6 +51,7 @@ def timberVersion = '4.3.1'
 ext.deps = [// Android
             supportCompatV7         : "com.android.support:appcompat-v7:$supportLibraryVersion",
             supportAnnotations      : "com.android.support:support-annotations:$supportLibraryVersion",
+            recyclerviewV7          : "com.android.support:recyclerview-v7:$supportLibraryVersion",
 
             fit                     : "com.github.2tu.fit:fit:$fitReleaseVersion",
             fitCompiler             : "com.github.2tu.fit:fit-compiler:$fitReleaseVersion",
@@ -61,8 +62,8 @@ ext.deps = [// Android
             okhttp                  : "com.squareup.okhttp3:okhttp:$okhttpVersion",
             okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-            retrofitAdapterRxJava : "com.squareup.retrofit2:adapter-rxjava:$retrofitAdapterRxJavaVersion",
-            retrofitConverterMoshi : "com.squareup.retrofit2:converter-moshi:$retrofitAdapterRxJavaVersion",
+            retrofitAdapterRxJava   : "com.squareup.retrofit2:adapter-rxjava:$retrofitAdapterRxJavaVersion",
+            retrofitConverterMoshi  : "com.squareup.retrofit2:converter-moshi:$retrofitAdapterRxJavaVersion",
             picasso                 : "com.squareup.picasso:picasso:$picassoVersion",
             picassoDownloader       : "com.jakewharton.picasso:picasso2-okhttp3-downloader:$picassoDownloaderVersion",
             moshi                   : "com.squareup.moshi:moshi:$moshiVersion",

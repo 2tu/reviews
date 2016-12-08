@@ -47,10 +47,10 @@ import rx.schedulers.Schedulers;
                 .objectId(avObject.getObjectId())
                 .build());
           } else {
-            return Observable.empty();
+            return Observable.just(null);
           }
         } catch (AVException e) {
-          return Observable.empty();
+          return Observable.just(null);
         }
       }
     }).subscribeOn(Schedulers.io());

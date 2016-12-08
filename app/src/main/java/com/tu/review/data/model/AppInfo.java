@@ -19,6 +19,7 @@ public class AppInfo implements Parcelable {
   public String icon;
   public Store store;
   public String objectId;
+  public String version;
 
   private AppInfo(Builder builder) {
     appName = builder.appName;
@@ -31,6 +32,7 @@ public class AppInfo implements Parcelable {
     icon = builder.icon;
     store = builder.store;
     objectId = builder.objectId;
+    version = builder.version;
   }
 
   public static Builder newBuilder() {
@@ -51,6 +53,7 @@ public class AppInfo implements Parcelable {
     private String icon;
     private Store store;
     private String objectId;
+    private String version;
     private String createAt;
     private String updateAt;
 
@@ -111,6 +114,11 @@ public class AppInfo implements Parcelable {
       return this;
     }
 
+    public Builder version(String val) {
+      version = val;
+      return this;
+    }
+
     public Builder createAt(String val) {
       createAt = val;
       return this;
@@ -133,6 +141,8 @@ public class AppInfo implements Parcelable {
         ", category='" + category + '\'' +
         ", icon='" + icon + '\'' +
         ", store=" + store +
+        ", objectId='" + objectId + '\'' +
+        ", version='" + version + '\'' +
         '}';
   }
 
@@ -146,6 +156,7 @@ public class AppInfo implements Parcelable {
     appInfo.put("appSize", appSize);
     appInfo.put("category", category);
     appInfo.put("icon", icon);
+    appInfo.put("version", version);
     appInfo.setObjectId(objectId);
     if (null != store) {
       appInfo.put("store", store.state);
@@ -168,6 +179,7 @@ public class AppInfo implements Parcelable {
     dest.writeString(this.icon);
     dest.writeInt(this.store == null ? -1 : this.store.ordinal());
     dest.writeString(this.objectId);
+    dest.writeString(this.version);
   }
 
   protected AppInfo(Parcel in) {
@@ -182,6 +194,7 @@ public class AppInfo implements Parcelable {
     int tmpStore = in.readInt();
     this.store = tmpStore == -1 ? null : Store.values()[tmpStore];
     this.objectId = in.readString();
+    this.version = in.readString();
   }
 
   public static final Creator<AppInfo> CREATOR = new Creator<AppInfo>() {

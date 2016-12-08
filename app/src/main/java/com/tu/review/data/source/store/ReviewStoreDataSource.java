@@ -1,5 +1,6 @@
 package com.tu.review.data.source.store;
 
+import com.tu.review.data.api.service.MiApi;
 import com.tu.review.data.api.service.MyAppApi;
 import com.tu.review.data.model.AppInfo;
 import com.tu.review.data.source.ReviewDataSource;
@@ -15,23 +16,31 @@ import rx.schedulers.Schedulers;
  */
 
 @ReviewScope public class ReviewStoreDataSource implements ReviewDataSource {
-  private final MyAppApi api;
+  private final MyAppApi myAppApi;
+  private final MiApi miApi;
 
-  public ReviewStoreDataSource(Retrofit retrofit) {
-    api = retrofit.create(MyAppApi.class);
+  public ReviewStoreDataSource(Retrofit myAppRetrofit, Retrofit miRetrofit) {
+    myAppApi = myAppRetrofit.create(MyAppApi.class);
+    miApi = miRetrofit.create(MiApi.class);
   }
 
   @Override public Observable<AppInfo> getAppInfo(final String packageName,
       final com.tu.review.data.model.Store store) {
     switch (store) {
       case MY_APP:
-        return api.detail(packageName).flatMap(new Func1<ResponseBody, Observable<AppInfo>>() {
+        return myAppApi.detail(packageName).flatMap(new Func1<ResponseBody, Observable<AppInfo>>() {
+          @Override public Observable<AppInfo> call(ResponseBody responseBody) {
+            return Observable.just(StoreHelper.parse(packageName, store, responseBody));
+          }
+        }).subscribeOn(Schedulers.io());
+      case MI:
+        return miApi.detail(packageName).flatMap(new Func1<ResponseBody, Observable<AppInfo>>() {
           @Override public Observable<AppInfo> call(ResponseBody responseBody) {
             return Observable.just(StoreHelper.parse(packageName, store, responseBody));
           }
         }).subscribeOn(Schedulers.io());
     }
-    return Observable.empty();
+    return Observable.just(null);
   }
 
   @Override public Observable<ResponseBody> save(AppInfo appInfo) {

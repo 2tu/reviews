@@ -4,6 +4,8 @@ import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.moshi.Moshi;
 import com.tu.review.BuildConfig;
 import com.tu.review.common.UrlConstants;
+import com.tu.review.data.api.service.Mi;
+import com.tu.review.data.api.service.MyApp;
 import dagger.Module;
 import dagger.Provides;
 import java.util.concurrent.TimeUnit;
@@ -39,8 +41,16 @@ import timber.log.Timber;
     return builder.build();
   }
 
-  @Provides @Singleton Retrofit provideMyAppRetrofit(OkHttpClient client, Moshi moshi) {
+  @Provides @Singleton @MyApp Retrofit provideMyAppRetrofit(OkHttpClient client, Moshi moshi) {
     return new Retrofit.Builder().baseUrl(UrlConstants.DOMAIN_MY_APP)
+        .client(client)
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build();
+  }
+
+  @Provides @Singleton @Mi Retrofit provideMiRetrofit(OkHttpClient client, Moshi moshi) {
+    return new Retrofit.Builder().baseUrl(UrlConstants.DOMAIN_MI)
         .client(client)
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create(moshi))

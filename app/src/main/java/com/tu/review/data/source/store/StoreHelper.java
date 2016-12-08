@@ -22,6 +22,8 @@ public final class StoreHelper {
     switch (store) {
       case MY_APP:
         return parseByMyApp(responseBody, packageName);
+      case MI:
+        return parseByMi(responseBody, packageName);
     }
     return null;
   }
@@ -103,10 +105,21 @@ public final class StoreHelper {
             }
           }
         }
+      } else {
+        return null;
       }
     } catch (IOException e) {
       return null;
     }
     return builder.build();
+  }
+
+  /**
+   * @param responseBody
+   * @param packageName
+   * @return
+   */
+  private static AppInfo parseByMi(ResponseBody responseBody, String packageName) {
+    return null;
   }
 }

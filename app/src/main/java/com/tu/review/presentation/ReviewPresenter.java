@@ -37,5 +37,24 @@ public final class ReviewPresenter extends RxPresenter<ReviewView> {
             }
           }
         }));
+
+    subscriptions.add(observeOnView(repository.getAppInfo(packageName, Store.MI)).subscribe(
+        new EndSubscriber<AppInfo>() {
+          @Override public void onError(Throwable e) {
+            super.onError(e);
+          }
+
+          @Override public void onEnd() {
+            baseView.hideLoading();
+          }
+
+          @Override public void onNext(AppInfo appInfo) {
+            if (null != appInfo) {
+              baseView.showMyAppInfo(appInfo);
+            } else {
+              baseView.showEmptyView();
+            }
+          }
+        }));
   }
 }
