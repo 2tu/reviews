@@ -4,8 +4,8 @@ import android.content.Context;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 import com.tu.review.ReviewApplication;
-import com.tu.review.data.api.service.Mi;
-import com.tu.review.data.api.service.MyApp;
+import com.tu.review.app.data.api.service.Mi;
+import com.tu.review.app.data.api.service.MyApp;
 import com.tu.review.di.modules.AppModule;
 import dagger.Component;
 import javax.inject.Singleton;
@@ -36,7 +36,7 @@ import retrofit2.Retrofit;
    *
    * @return {@link Retrofit}
    */
-  @MyApp  Retrofit retrofit();
+  @MyApp Retrofit retrofit();
 
   @Mi Retrofit retrofitMi();
 

@@ -6,7 +6,7 @@ import android.net.Uri;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
-import com.tu.review.data.api.adapter.ReviewJsonAdapterFactory;
+import com.tu.review.app.data.api.adapter.ReviewJsonAdapterFactory;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;

@@ -7,11 +7,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
-import com.tu.review.data.model.AppInfo;
+import com.tu.review.app.data.model.AppInfo;
+import com.tu.review.app.di.components.DaggerReviewComponent;
+import com.tu.review.app.presentation.ReviewPresenter;
+import com.tu.review.app.presentation.ReviewView;
 import com.tu.review.di.Injector;
-import com.tu.review.di.components.DaggerReviewComponent;
-import com.tu.review.presentation.ReviewPresenter;
-import com.tu.review.presentation.ReviewView;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements ReviewView {
@@ -56,10 +56,23 @@ public class MainActivity extends BaseActivity implements ReviewView {
   }
 
   @Override public void showLoading() {
-
+    LoadingFragment fragment =
+        (LoadingFragment) getFragmentManager().findFragmentByTag(LoadingFragment.FRAGMENT_TAG);
+    if (fragment == null) {
+      fragment = LoadingFragment.newInstance();
+      //getFragmentManager().beginTransaction()
+      //    .add(fragment, LoadingFragment.FRAGMENT_TAG)
+      //    .commitAllowingStateLoss();
+    }
+     fragment.show(getFragmentManager().beginTransaction(), LoadingFragment.FRAGMENT_TAG);
   }
 
   @Override public void hideLoading() {
-
+    LoadingFragment fragment =
+        (LoadingFragment) getFragmentManager().findFragmentByTag(LoadingFragment.FRAGMENT_TAG);
+    if (fragment != null) {
+      fragment.dismissAllowingStateLoss();
+      //getFragmentManager().beginTransaction().remove(fragment).commitAllowingStateLoss();
+    }
   }
 }
